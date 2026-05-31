@@ -1,0 +1,16 @@
+<div *ngFor="let form of forms">
+
+  <mat-card>
+
+    <h3>{{form.formName}}</h3>
+
+    <button
+      [routerLink]="['/form',form.formId]">
+
+      Open Form
+
+    </button>
+
+  </mat-card>
+
+</div>
