@@ -20,7 +20,6 @@ export class FormsList {
 forms:Form[] = [];
 constructor(private formsService: FormsService) {}
 ngOnInit() {
-
   this.formsService
       .getForms()
       .subscribe(data => {

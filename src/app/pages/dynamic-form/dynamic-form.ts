@@ -39,6 +39,7 @@ export class DynamicForm implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    debugger;
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
     this.formsService.getForm(id).subscribe(response => {
@@ -66,7 +67,7 @@ buildForm() {
 }
 
 submit() {
-
+debugger;
  const answers =
     Object.keys(
       this.dynamicForm.value)
