@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup,Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { FormsService } from '../../services/forms';
 import { Router } from '@angular/router';
@@ -53,21 +53,37 @@ export class DynamicForm implements OnInit {
 
 buildForm() {
 
-    let group:any = {};
+  let group: any = {};
 
-    this.schema.fields
-        .forEach((field:any)=>{
+  this.schema.fields.forEach((field: any) => {
 
-          group[field.id] =
-            new FormControl('');
-    });
+    const validators = [];
 
-    this.dynamicForm =
-          new FormGroup(group);
+    if (field.required) {
+      validators.push(Validators.required);
+    }
+
+    if (field.type === 'email') {
+      validators.push(Validators.email);
+    }
+
+    group[field.name] = new FormControl(
+      '',
+      validators
+    );
+  });
+
+  this.dynamicForm = new FormGroup(group);
 }
-
 submit() {
-debugger;
+
+  if (this.dynamicForm.invalid) {
+
+    this.dynamicForm.markAllAsTouched();
+
+    return;
+  }
+
  const answers =
     Object.keys(
       this.dynamicForm.value)
