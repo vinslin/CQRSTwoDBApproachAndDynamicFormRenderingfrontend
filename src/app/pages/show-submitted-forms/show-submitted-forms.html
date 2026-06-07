@@ -1,0 +1,18 @@
+<div *ngFor="let form of forms">
+
+  <mat-card>
+
+    <h3>{{form.formGuid}}</h3>
+
+      <h3>{{form.createdAt}}</h3>
+
+    <button
+      [routerLink]="['/submittedforms']">
+
+      Open Form 
+
+    </button>
+
+  </mat-card>
+
+</div>
